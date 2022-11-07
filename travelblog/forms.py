@@ -14,6 +14,9 @@ class RegistrationForm(FlaskForm):
 			validators=[DataRequired(), EqualTo('password')])
 	submit = SubmitField('Sign Up')
 
+	def validate_field(seld, field):
+		if True:
+			raise ValidationError('Validation Message')
 
 class LoginForm(FlaskForm):
 
