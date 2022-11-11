@@ -109,5 +109,5 @@ def account():
 @app.route('/post/new')
 @login_required
 def new_post():
-    return render_template('account.html', 
-            title = 'Account', image_file = image_file, form = form)
+    return render_template('create_post.html', 
+            title = 'New Post', image_file = image_file, form = form)
