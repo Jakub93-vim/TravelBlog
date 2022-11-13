@@ -7,27 +7,12 @@ from travelblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, Pos
 from travelblog.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 
-posts = [
-
-    {
-        'author': 'Jakub Kasal',
-        'title': 'Blog post 1',
-        'content': 'Traveling',
-        'date_posted':'April 2020'
-    },
-
-    {
-        'author': 'Jack Blacksmith',
-        'title': 'Blog post 2',
-        'content': 'Programming',
-        'date_posted':'May 2020'
-    }
-]
 
 # home webpage
 @app.route('/')
 @app.route('/home')
 def home():
+    posts = Post.query.all()
     return render_template ('home.html', posts = posts)
 
 @app.route('/about')
@@ -113,7 +98,7 @@ def new_post():
     if form.validate_on_submit():
         post = Post(title=form.title.data, content=form.content.data, author = current_user)
         db.session.add(post)
-        db.session.commit
+        db.session.commit()
         flash('Your post has been created!', 'success')
         return redirect(url_for('home'))
     return render_template('create_post.html', 
