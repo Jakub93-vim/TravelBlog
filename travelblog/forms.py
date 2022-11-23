@@ -72,7 +72,7 @@ class RequestResetForm(FlaskForm):
 		if user is None:
 			raise ValidationError('There is no such account')
 
-class ResetPasswordFrom(FlaskForm):
+class ResetPasswordForm(FlaskForm):
 	password = PasswordField('Password', validators=[DataRequired()])
 	confirm_password = PasswordField('Confirm Password',
 			validators=[DataRequired(), EqualTo('password')])
